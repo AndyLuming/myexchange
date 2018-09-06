@@ -1,6 +1,9 @@
 # My Exchange
 
+## Env
+python 3.6
+
 ## Usage
 ```
-python main.py
+python.exe cli.py run --symbol BTCUSDT --interval 1m
 ```
