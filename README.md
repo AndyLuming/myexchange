@@ -1,13 +1,13 @@
 # My Exchange
 
 ## Env
-python 3.6
-numpy
-matplotlib
-fire
-requests
-websocket-client
-pandas
+- python 3.6
+- numpy
+- matplotlib
+- fire
+- requests
+- websocket-client
+- pandas
 
 ## Usage
 ```
