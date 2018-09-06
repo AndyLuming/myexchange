@@ -8,10 +8,25 @@ from common.apis import*
 from market.agent import MarketAgent
 import websocket
 try:
-    import thread
+    import thread 
 except ImportError:
     import _thread as thread
 import time
+import matplotlib.pyplot as plt
+import matplotlib
+
+def graph():
+    opens  = []
+    closes = []
+    highs  = []
+    lows   = []
+    for item in candles_cache:
+        opens.append(item.open)
+        closes.append(item.close)
+        highs.append(item.high)
+        lows.append(item.low)
+    
+
 
 def on_message(ws, message):
     data   = json.loads(message)
