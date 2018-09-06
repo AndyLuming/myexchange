@@ -26,10 +26,14 @@ def on_open(ws):
 
 def main():
     print('sample symbol is BTCUSDT')
-    websocket.enableTrace(True)
-    ws = websocket.WebSocketApp("wss://stream2.binance.cloud/ws/btcusdt@kline_1m", on_message = on_message, on_error = on_error, on_close = on_close)
-    ws.on_open = on_open
-    ws.run_forever()
+    kAgent  = KLineAgent()
+    candles = kAgent.fetchDataToCandles('BTCUSDT', INTERVAL_MIN_1)
+    for item in candles:
+        print('high:', item.high, 'open:', item.open, 'low:', item.low, 'close:', item.close, 'volume:', item.volume)
+    # websocket.enableTrace(True)
+    # ws = websocket.WebSocketApp("wss://stream2.binance.cloud/ws/btcusdt@kline_1m", on_message = on_message, on_error = on_error, on_close = on_close)
+    # ws.on_open = on_open
+    # ws.run_forever()
 
 if __name__ == '__main__':
     main()
