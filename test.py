@@ -25,6 +25,7 @@ def on_open(ws):
     print(btcusdt)
 
 def main():
+    print('sample symbol is BTCUSDT')
     websocket.enableTrace(True)
     ws = websocket.WebSocketApp("wss://stream2.binance.cloud/ws/btcusdt@kline_1m", on_message = on_message, on_error = on_error, on_close = on_close)
     ws.on_open = on_open
