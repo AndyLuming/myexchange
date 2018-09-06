@@ -7,13 +7,14 @@ class KLineAgent(object):
     def __init__(self):
         pass
 
-    def fetchData(self, symbol, interval):
-        payload = {'symbol': symbol, 'interval': interval}
+    def fetchData(self, symbol, interval, limit = '500'):
+        payload = {'symbol': symbol, 'interval': interval, 'limit': limit}
         r = requests.get(api_kline, params=payload)
+        print(r.url)
         return r.text
     
-    def fetchDataToCandles(self, symbol, interval):
-        payload = {'symbol': symbol, 'interval': interval}
+    def fetchDataToCandles(self, symbol, interval, limit = '500'):
+        payload = {'symbol': symbol, 'interval': interval, 'limit': limit}
         r = requests.get(api_kline, params=payload)
         json_array = r.json()
         store_list = []
