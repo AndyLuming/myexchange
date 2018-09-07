@@ -8,6 +8,7 @@
 - requests
 - websocket-client
 - pandas
+- mpl_finance
 
 ## Usage
 ```
