@@ -7,50 +7,11 @@ from common.constants import*
 from common.apis import*
 from market.agent import MarketAgent
 import websocket
-import matplotlib.pyplot as plt
-from mpl_finance import candlestick2_ochl
-from matplotlib.dates import DateFormatter, WeekdayLocator,\
-    DayLocator, MONDAY
+from vision.candlestick import show_candle_stick
 try:
     import thread 
 except ImportError:
     import _thread as thread
-# import time
-# import plotly.plotly as py
-# import plotly.graph_objs as go
-# import pandas as pd
-# pd.core.common.is_list_like = pd.api.types.is_list_like
-# import pandas_datareader as web
-# from datetime import datetime
-
-def buildGraph():
-    opens  = []
-    closes = []
-    highs  = []
-    lows   = []
-    times  = []
-    for item in candles_cache:
-        opens.append(item.open)
-        closes.append(item.close)
-        highs.append(item.high)
-        lows.append(item.low)
-        times.append(item.time)
-    
-    mondays = WeekdayLocator(MONDAY)        # major ticks on the mondays
-    alldays = DayLocator()                  # minor ticks on the days
-    weekFormatter = DateFormatter('%b %d')  # e.g., Jan 12
-    dayFormatter = DateFormatter('%d')      # e.g., 12
-
-    fig, ax = plt.subplots()
-    fig.subplots_adjust(bottom=0.2)
-    ax.xaxis.set_major_locator(mondays)
-    ax.xaxis.set_minor_locator(alldays)
-    ax.xaxis.set_major_formatter(weekFormatter)
-    candlestick2_ochl(ax, opens, closes, highs, lows, width=0.3)
-    ax.xaxis_date()
-    ax.autoscale_view()
-    plt.setp(plt.gca().get_xticklabels(), rotation=45, horizontalalignment='right')
-    plt.show()
 
 def on_message(ws, message):
     data   = json.loads(message)
@@ -70,11 +31,6 @@ def on_message(ws, message):
             print('candle list is empty')
     else:
         print('Data not match, drop')
-    
-    # if len(candles_cache) > 0 and is_candlestick_open:
-    #     buildGraph()
-    #     refreshGraph()
-           
 
 def on_error(ws, error):
     print(error)
@@ -89,7 +45,7 @@ def on_open(ws):
     candles = kAgent.fetchDataToCandles(symbol_cache.upper(), interval_cache)
     update_candles(candles)
     if is_candlestick_open:
-        buildGraph()
+        show_candle_stick(candles)
 
 def update_symbol(symbol):
     global symbol_cache
