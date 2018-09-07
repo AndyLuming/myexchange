@@ -11,4 +11,6 @@ INTERVAL_DAY_1  = '1d'
 INTERVAL_WEEK_1 = '1w'
 INTERVAL_MON_1  = '1M'
 
+DEFAULT_CANDLES_LIMIT = '100'
+
 #macd diff dea
