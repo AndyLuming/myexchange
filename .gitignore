@@ -1,2 +1,9 @@
 .idea/
 .vscode/
+# common/__pycache__
+# indicator/__pycache__
+# kline/__pycache__
+# market/__pycache__
+# vision/__pycache__
+# websocket/__pycache__
+# *.pyc
